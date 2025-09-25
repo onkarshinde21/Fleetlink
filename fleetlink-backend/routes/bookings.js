@@ -4,7 +4,7 @@ const Vehicle = require("../models/Vehicle");
 const Booking = require("../models/Booking");
 const calcRideDuration = require("../utils/calcRideDuration");
 
-// POST /api/bookings
+
 router.post("/", async (req, res) => {
   try {
     const { vehicleId, fromPincode, toPincode, startTime, customerId } = req.body;
@@ -51,7 +51,7 @@ router.post("/", async (req, res) => {
 
     await booking.save();
 
-    // Populate vehicle details before returning
+    
     const savedBooking = await Booking.findById(booking._id).populate("vehicleId");
 
     return res.status(201).json({
@@ -76,7 +76,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET /api/bookings
+
 router.get("/", async (req, res) => {
   try {
     const { customerId } = req.query;
@@ -112,7 +112,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// DELETE /api/bookings/:id
+
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;

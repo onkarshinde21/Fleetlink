@@ -47,12 +47,12 @@ router.get('/available', async (req, res) => {
    
     let candidateVehicles;
     if (exact === "true") {
-      // strict mode: only exact capacity match
+      
       candidateVehicles = await Vehicle.find({ capacityKg: capacityNum }).lean();
     } else {
 
       candidateVehicles = await Vehicle.find({ capacityKg: { $gte: capacityNum } })
-        .sort({ capacityKg: 1 }) // smallest first
+        .sort({ capacityKg: 1 })
         .lean();
     }
 
